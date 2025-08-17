@@ -1,0 +1,19 @@
+{
+  "name": "tempmail-app",
+  "version": "1.0.0",
+  "description": "Temporary Email Service with Dark Theme",
+  "main": "index.html",
+  "scripts": {
+    "start": "node backend/test-api.js",
+    "build": "echo 'No build required'",
+    "dev": "node backend/test-api.js"
+  },
+  "keywords": [
+    "temporary",
+    "email",
+    "disposable",
+    "mail"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

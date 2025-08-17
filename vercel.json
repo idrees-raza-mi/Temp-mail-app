@@ -33,10 +33,5 @@
     "RATE_LIMIT_REQUESTS": "100",
     "RATE_LIMIT_WINDOW_MINUTES": "15",
     "SMTP_PORT": "587"
-  },
-  "functions": {
-    "backend/server.js": {
-      "maxDuration": 30
-    }
   }
 }

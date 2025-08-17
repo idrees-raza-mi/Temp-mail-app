@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "tempmail-app",
+  "routes": [
+    {
+      "src": "/frontend/(.*)",
+      "dest": "/frontend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/index.html"
+    }
+  ]
+}
