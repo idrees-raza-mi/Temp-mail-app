@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempMail - Temporary Email Service</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-envelope-open"></i> TempMail</h1>
+            <p>Temporary & Disposable Email Service</p>
+        </header>
+
+        <!-- Email Generator Section -->
+        <section class="email-generator">
+            <div class="generator-card">
+                <h2>Generate Temporary Email</h2>
+                
+                <div class="email-display" id="emailDisplay">
+                    <input type="text" id="currentEmail" readonly placeholder="Click generate to create email">
+                    <div class="email-actions">
+                        <button id="copyBtn" title="Copy Email"><i class="fas fa-copy"></i></button>
+                        <button id="refreshBtn" title="Generate New Email"><i class="fas fa-refresh"></i></button>
+                    </div>
+                </div>
+
+                <div class="domain-selector">
+                    <label for="domainSelect">Choose Domain:</label>
+                    <select id="domainSelect">
+                        <option value="">Loading domains...</option>
+                    </select>
+                </div>
+
+                <div class="generator-buttons">
+                    <button id="generateBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Generate Email
+                    </button>
+                    <button id="checkEmailsBtn" class="btn-secondary" disabled>
+                        <i class="fas fa-inbox"></i> Check Emails
+                    </button>
+                </div>
+
+                <div class="email-info" id="emailInfo" style="display: none;">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Expires: <span id="expirationTime"></span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Emails: <span id="emailCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Email List Section -->
+        <section class="email-list" id="emailListSection" style="display: none;">
+            <div class="list-header">
+                <h2>Inbox for <span id="currentEmailAddress"></span></h2>
+                <div class="inbox-controls">
+                    <button id="refreshEmailsBtn" class="btn-icon" title="Refresh Emails">
+                        <i class="fas fa-sync"></i>
+                    </button>
+                    <button id="autoRefreshBtn" class="btn-icon" title="Auto Refresh (30s)">
+                        <i class="fas fa-clock"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="email-stats" id="emailStats" style="display: none;">
+                <div class="stat-item">
+                    <span class="stat-label">Total:</span>
+                    <span class="stat-value" id="totalEmails">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Unread:</span>
+                    <span class="stat-value" id="unreadEmails">0</span>
+                </div>
+            </div>
+
+            <div id="emailContainer">
+                <div class="loading" id="loadingEmails">
+                    <i class="fas fa-spinner fa-spin"></i> Loading emails...
+                </div>
+                <div class="no-emails" id="noEmails" style="display: none;">
+                    <i class="fas fa-inbox"></i>
+                    <p>No emails received yet</p>
+                    <small>Send an email to your temporary address to see it here</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Email Detail Modal -->
+        <div class="modal" id="emailModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="emailSubject"></h3>
+                    <button class="modal-close" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="email-meta">
+                    <div class="meta-item">
+                        <strong>From:</strong> <span id="emailFrom"></span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>To:</strong> <span id="emailTo"></span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Date:</strong> <span id="emailDate"></span>
+                    </div>
+                </div>
+
+                <div class="email-body">
+                    <div class="body-tabs">
+                        <button class="tab-btn active" data-tab="text">Text</button>
+                        <button class="tab-btn" data-tab="html">HTML</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="textContent">
+                        <pre id="emailTextBody"></pre>
+                    </div>
+                    
+                    <div class="tab-content" id="htmlContent">
+                        <iframe id="emailHtmlBody" sandbox="allow-same-origin"></iframe>
+                    </div>
+                </div>
+
+                <div class="email-attachments" id="emailAttachments" style="display: none;">
+                    <h4>Attachments</h4>
+                    <div id="attachmentsList"></div>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="deleteEmailBtn" class="btn-danger">
+                        <i class="fas fa-trash"></i> Delete Email
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                <i class="fas fa-shield-alt"></i> 
+                Emails are automatically deleted after 24 hours
+            </p>
+            <p>
+                <i class="fas fa-exclamation-triangle"></i>
+                Do not use for important communications - this is a temporary service
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

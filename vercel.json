@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "name": "tempmail-app",
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    },
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "ALLOWED_DOMAINS": "tempmail.vercel.app,temp.vercel.app",
+    "EMAIL_EXPIRATION_HOURS": "24",
+    "MAX_EMAILS_PER_ADDRESS": "50",
+    "CLEANUP_INTERVAL_MINUTES": "60",
+    "RATE_LIMIT_REQUESTS": "100",
+    "RATE_LIMIT_WINDOW_MINUTES": "15",
+    "SMTP_PORT": "587"
+  },
+  "functions": {
+    "backend/server.js": {
+      "maxDuration": 30
+    }
+  }
+}

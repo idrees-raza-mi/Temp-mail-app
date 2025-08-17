@@ -1,0 +1,36 @@
+{
+  "name": "tempmail-backend",
+  "version": "1.0.0",
+  "description": "Backend server for temporary email service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "setup-db": "node setup-database.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "sqlite3": "^5.1.6",
+    "smtp-server": "^3.12.0",
+    "mailparser": "^3.6.5",
+    "uuid": "^9.0.1",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.10.0",
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "nodemailer": "^6.9.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "temporary",
+    "email",
+    "disposable",
+    "mail",
+    "smtp"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
